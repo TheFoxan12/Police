@@ -1,0 +1,64 @@
+1000 appels sur 180 jours
+numéro + prénom + nom + entrant/sortant
+
+parser (le plus dur ptdr)
+
+Exercice 1:
+
+-> trier par ordre croissant
+    -> tri à bulles
+        - durée : ~3000 usecondes
+    -> tri par insertion
+        - durée : ~800 usecondes
+    --> meilleur algo : tri par insertion
+
+complexité au pire tri à bulles : n^2
+complexité au pire tri par insertion : n^2
+--> la complexité est la même au pire
+
+approche différente des numéros pour accélérer l'exécution ?
+-> commencé par interpréter les numéros comme des char * et utilisé strcmp
+différentes approches, et leurs temps :
+    --> interpréter les numéros comme des int au lieu de char *
+        --> temps bubble : ~1500 usecondes
+        --> temps insertion : ~1500 usecondes
+        convertir les numéros au préalable et les traiter comme des int
+        permet de diviser par 2 le temps nécessaire au tri
+        c'est probablement dû à la différence majeure : utilisation de la fonction
+        strcmp, qui doit être nécessaire plus longue (2 fois ?) que simplement
+        comparer des int
+        la nouvelle approche est un succès
+
+------------------------------------
+Exercice 2:
+
+trouver une personne avec le plus de communications
+-> histogramme
+    - dénombrer les occurrences de chaque instance de valeur (compter)
+--> individu qui ressort : Oscar RIOTTO avec 140 appels
+
+compter les appels entrants/sortants
+harceleur ou harcelé ? : 90 entrants, 50 sortants, donc -> harcelée
+
+------------------------------------
+Exercice 3:
+
+durée de l'histogramme : 100 usecondes
+-> trop long (xdd oe oe trop long ^^), trouver une méthode plus efficace
+
+-> générer 1000 entiers entre 0 et 24
+pk cette plage de valeurs ?
+    - 1000 entiers parce que 1000 appels différents
+    - entre 0 et 24 parce que 25 personnes différentes dans le relevé
+-> algo histogramme sur la liste aléatoire
+    -> temps d'exécution : ~10 usecondes
+
+améliorer la méthode :
+    on peut utiliser les nombres directement comme des index
+        --> temps : probablement < 1 useconde
+        la technique consiste à utiliser le nombre comme index dans le tableau
+        en effet, ayant 25 nombres différents, le tableau ne fait que 25 cases
+        les nombres se suivants c'est encore plus arrangeant
+        ça serait compliqué d'appliquer cette méthode aux numéros de téléphone étant donné
+        que ceux-ci sont souvent semblables à : "0123456789", ce qui reviendrait à un index
+        de plus de 100 million, et qui nécessiterait un tableau bien trop grand
